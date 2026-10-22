@@ -40,7 +40,7 @@ const KALK=(function(){
   function rysuj(){
     const L=st.dl,W=st.sz,F=st.pietra,fh=2.9,gable=st.dach==='dwu';
     const ox=.55,oy=.32; /* rzut ukosny */
-    const rh=gable?Math.min(2.2,W*.32):.35;
+    const rh=gable?Math.min(2.4,W*.36):.35;
     const s=Math.min(370/(L+W*ox),205/(F*fh+W*oy+rh));
     const wF=L*s,dx=W*s*ox,dy=W*s*oy,H=F*fh*s;
     const x0=(440-(wF+dx))/2,yb=238;
@@ -83,11 +83,21 @@ const KALK=(function(){
       o+='<rect x="'+(x0-2)+'" y="'+(yt-rh*s)+'" width="'+(wF+4)+'" height="'+(rh*s)+'" fill="#202327"/>';
       o+='<polygon points="'+(x0+wF+2)+','+yt+' '+(x0+wF+2)+','+(yt-rh*s)+' '+(x0+wF+dx)+','+(yt-dy-rh*s)+' '+(x0+wF+dx)+','+(yt-dy)+'" fill="#17191c"/>';
     }else{
-      const R=rh*s,mx=dx/2,my=dy/2;
-      o+='<polygon points="'+(x0+wF)+','+yt+' '+(x0+wF+dx)+','+(yt-dy)+' '+(x0+wF+mx)+','+(yt-my-R)+'" fill="'+e[3]+'"/>';
-      o+='<polygon points="'+(x0-6)+','+(yt+3)+' '+(x0+wF+4)+','+(yt+3)+' '+(x0+wF+mx+2)+','+(yt-my-R)+' '+(x0+mx-6)+','+(yt-my-R)+'" fill="#2b2f34"/>';
-      o+='<line x1="'+(x0+mx-6)+'" y1="'+(yt-my-R)+'" x2="'+(x0+wF+mx+2)+'" y2="'+(yt-my-R)+'" stroke="#e3bf6c" stroke-width="2"/>';
+      const R=rh*s,mx=dx/2,my=dy/2,ov=5;
+      const rx=x0+mx,ry=yt-my-R; /* kalenica */
+      // tylna polac (widoczna nad kalenica)
+      o+='<polygon points="'+(rx-ov)+','+ry+' '+(rx+wF+ov)+','+ry+' '+(x0+wF+dx+ov)+','+(yt-dy)+' '+(x0+dx-ov)+','+(yt-dy)+'" fill="#24282d"/>';
+      // szczyt na boku
+      o+='<polygon points="'+(x0+wF)+','+yt+' '+(x0+wF+dx)+','+(yt-dy)+' '+(rx+wF)+','+ry+'" fill="'+e[3]+'"/>';
+      o+='<polyline points="'+(x0+wF+ov*.6)+','+(yt+2)+' '+(rx+wF+ov*.3)+','+(ry-1)+' '+(x0+wF+dx+ov)+','+(yt-dy+1)+'" fill="none" stroke="#1a1c1f" stroke-width="3" stroke-linejoin="round"/>';
+      // przednia polac
+      o+='<polygon points="'+(x0-ov)+','+(yt+2)+' '+(x0+wF+ov)+','+(yt+2)+' '+(rx+wF+ov)+','+ry+' '+(rx-ov)+','+ry+'" fill="#3a3f46"/>';
+      for(let x=x0+s*.6;x<x0+wF;x+=s*.6)o+='<line x1="'+x+'" y1="'+(yt+2)+'" x2="'+(x+mx)+'" y2="'+ry+'" stroke="rgba(0,0,0,.22)"/>';
+      o+='<line x1="'+(rx-ov)+'" y1="'+ry+'" x2="'+(rx+wF+ov)+'" y2="'+ry+'" stroke="#1a1c1f" stroke-width="3"/>';
     }
+    // sylwetka 1,8 m dla skali
+    {const hx=x0-Math.max(10,s*.5),hh=1.8*s,hw=.42*s;
+     if(hx-hw>4)o+='<g fill="#8b9096" opacity=".85"><circle cx="'+hx+'" cy="'+(yb-hh+hw*.42)+'" r="'+(hw*.42)+'"/><rect x="'+(hx-hw/2)+'" y="'+(yb-hh+hw*.95)+'" width="'+hw+'" height="'+(hh*.42)+'" rx="'+(hw*.3)+'"/><rect x="'+(hx-hw/2+1)+'" y="'+(yb-hh*.5)+'" width="'+(hw*.42)+'" height="'+(hh*.5)+'"/><rect x="'+(hx+hw*.08-1)+'" y="'+(yb-hh*.5)+'" width="'+(hw*.42)+'" height="'+(hh*.5)+'"/></g>';}
     // wymiary
     o+='<g font-family="Barlow,sans-serif" font-size="13" font-weight="600" fill="#e9e7e2"><line x1="'+x0+'" y1="'+(yb+16)+'" x2="'+(x0+wF)+'" y2="'+(yb+16)+'" stroke="#c9a04a"/><rect x="'+(x0+wF/2-24)+'" y="'+(yb+8)+'" width="48" height="16" fill="#24272b"/><text x="'+(x0+wF/2)+'" y="'+(yb+20)+'" text-anchor="middle">'+pl(L)+' m</text>';
     o+='<text x="'+(x0+wF+dx/2+6)+'" y="'+(yb-dy/2+14)+'" fill="#a3a7ab">'+pl(W)+' m</text></g>';
@@ -103,6 +113,7 @@ const KALK=(function(){
       '<li><span>Transport HDS</span>'+KM[st.km][0]+'</li>';
     const od=Math.round(r.suma/500)*500,doo=Math.round(r.suma*1.2/500)*500;
     document.getElementById('cena').textContent=zl(od)+' - '+zl(doo);
+    const mc=document.getElementById('mobCena');if(mc)mc.textContent=zl(od)+' - '+zl(doo);
     document.getElementById('cenaP').textContent='baza: 2150 zł × '+pl(r.calk)+' m² = '+zl(r.baza)+(st.km==='eu'?' · transport do Europy wyceniany osobno':'');
   }
   function tekst(){
@@ -148,17 +159,19 @@ const KALK=(function(){
     {m:'Hausen (Niemcy)',h:'Biura YT Industries',p:'Kontenery biurowe na terenie Pilatus Campus.',ll:[49.6967,11.0331]}
   ];
   const BAZA={m:'Kowanówko k. Obornik',h:'Siedziba i produkcja',p:'ul. Łąkowa 21, 64-600 Oborniki. Stąd wyjeżdża każdy obiekt.',ll:[52.6585,16.8402]};
-  const img=document.getElementById('krImg'),nast=document.getElementById('krNast'),lista=document.getElementById('krLista');
+  const img=document.getElementById('krImg'),nast=document.getElementById('krNast'),pop=document.getElementById('krPop'),nav=document.getElementById('krNav'),licz=document.getElementById('krI'),lista=document.getElementById('krLista');
+  const ustaw=src=>{if(img.getAttribute('src')===src)return;img.classList.add('zm');const n=new Image();n.onload=n.onerror=()=>{img.src=src;requestAnimationFrame(()=>img.classList.remove('zm'))};n.src=src};
+  const krok=d=>{if(!akt||!akt.f)return;fi=(fi+d+akt.f.length)%akt.f.length;ustaw('img/'+akt.f[fi]+'.webp');licz.textContent=(fi+1)+' / '+akt.f.length};
   let akt=null,fi=0,mk=[];
   function pokaz(r){
     akt=r;fi=0;
     document.getElementById('krM').textContent=r.m;document.getElementById('krH').textContent=r.h;document.getElementById('krP').textContent=r.p;
     const fo=document.querySelector('.kr-foto');
-    if(r.f){fo.hidden=false;img.src='img/'+r.f[0]+'.webp';img.alt=r.h+', '+r.m;nast.hidden=r.f.length<2}else{fo.hidden=true}
+    if(r.f){fo.hidden=false;ustaw('img/'+r.f[0]+'.webp');img.alt=r.h+', '+r.m;nav.hidden=r.f.length<2;licz.textContent='1 / '+r.f.length}else{fo.hidden=true}
     lista.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.m===r.m));
     mk.forEach(x=>{const el=x.m.getElement&&x.m.getElement();if(el&&el.firstChild&&el.firstChild.classList)el.firstChild.classList.toggle('akt',x.r===r)});
   }
-  nast.addEventListener('click',()=>{if(!akt||!akt.f)return;fi=(fi+1)%akt.f.length;img.src='img/'+akt.f[fi]+'.webp'});
+  nast.addEventListener('click',()=>krok(1));pop.addEventListener('click',()=>krok(-1));
   R.filter(r=>r.f).forEach(r=>{const b=document.createElement('button');b.type='button';b.textContent=r.m;b.dataset.m=r.m;b.addEventListener('click',()=>{pokaz(r);if(window._mapa)window._mapa.panTo(r.ll)});lista.appendChild(b)});
   pokaz(R[0]);
   const box=document.getElementById('mapa');if(!box||!window.L)return;
@@ -220,4 +233,8 @@ const KALK=(function(){
   const m=document.querySelector('.mob'),t=document.querySelector('.hero-cta');if(!m)return;
   if(!t||!('IntersectionObserver' in window)){m.classList.add('widac');return}
   new IntersectionObserver(w=>w.forEach(x=>m.classList.toggle('widac',!x.isIntersecting&&x.boundingClientRect.top<0)),{threshold:0}).observe(t);
+  const kl=document.querySelector('.kalk-l'),kp=document.getElementById('podsumowanie');if(!kl||!kp)return;
+  let wL=false,wP=false;const ak=()=>{const on=wL&&!wP;m.classList.toggle('wkalk',on);m.classList.toggle('wpod',wP);m.querySelector('.mob-k').setAttribute('aria-hidden',!on);m.querySelector('.mob-k a').tabIndex=on?0:-1};
+  new IntersectionObserver(w=>w.forEach(x=>{if(x.target===kl)wL=x.isIntersecting;else wP=x.isIntersecting;ak()}),{rootMargin:'-64px 0px -80px 0px'}).observe(kl);
+  new IntersectionObserver(w=>w.forEach(x=>{wP=x.intersectionRatio>.25;ak()}),{threshold:[0,.25,.5]}).observe(kp);
 })();

@@ -11,7 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="preload" as="image" href="img/hero-1200.webp" imagesrcset="img/hero-1200.webp 1200w, img/hero-2000.webp 2000w" imagesizes="(max-width:760px) 100vw, 60vw">
+<link rel="stylesheet" href="style.css?v=3">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"Dick Pawilony Wojciech Paprota","address":{"@type":"PostalAddress","streetAddress":"ul. Łąkowa 21","addressLocality":"Kowanówko","postalCode":"64-600","addressCountry":"PL"},"telephone":"+48889387690","email":"kontakt@dickpawilony.pl","openingHours":"Mo-Fr 07:00-17:00","areaServed":["PL","EU"]}</script>
 </head>
 <body>
@@ -39,11 +40,11 @@
 
 <main id="start">
 <section class="hero">
-  <div class="hero-foto"><img src="img/hero.webp" alt="Pawilon z płyty warstwowej w kolorze antracytu z elewacją z drewna i dużymi przeszkleniami" fetchpriority="high"></div>
+  <div class="hero-foto"><img src="img/hero-2000.webp" srcset="img/hero-1200.webp 1200w, img/hero-2000.webp 2000w" sizes="(max-width:760px) 100vw, 60vw" width="2000" height="1500" alt="Pawilon handlowy Comfort Plus z elewacją z drewnianych listew i podświetlanym logo" fetchpriority="high"></div>
   <div class="wrap hero-in">
     <p class="miejsce">Kowanówko k. Obornik<span class="t-d">, dostawa i montaż w całej Polsce</span></p>
     <h1>Pawilony i kontenery biurowe na wymiar</h1>
-    <p class="lead">Całoroczne obiekty z płyty warstwowej na stalowej ramie: biura, sklepy, gastronomia, portiernie. Od 2150 zł netto za m², z transportem HDS, montażem i 24 miesiącami gwarancji.</p>
+    <p class="lead">Całoroczne obiekty z płyty warstwowej na stalowej ramie: biura, sklepy, gastronomia, portiernie. Od 2150 zł netto za m², z własnym transportem HDS, montażem i 24&nbsp;miesiącami gwarancji.</p>
     <div class="hero-cta">
       <a class="btn btn-zloto" href="#kalkulator">Sprawdź orientacyjną cenę</a>
       <a class="btn btn-linia" href="#realizacje">Zobacz realizacje</a>
@@ -55,7 +56,7 @@
   <div class="wrap">
     <div class="naglowek"><h2>Co produkujemy</h2><p class="lead-s">Każdy obiekt powstaje według Twoich wytycznych: wymiary, układ wnętrza, przeszklenia, kolor i rodzaj elewacji.</p></div>
     <div class="oferta">
-      <a class="karta duza" href="#kalkulator" data-typ="handel"><img src="img/r_comfort.webp" alt="Pawilon handlowy z elewacją z drewna i podświetlanym logo" loading="lazy"><div class="k-t"><h3>Pawilony handlowe i usługowe</h3><p>Duże witryny, elewacja w kolorach Twojej marki, gotowe do otwarcia sklepu lub salonu.</p></div></a>
+      <a class="karta duza" href="#kalkulator" data-typ="handel"><img src="img/r_drewno.webp" alt="Biuro sprzedaży Pomorskie Domy z elewacją z pionowych drewnianych listew" loading="lazy"><div class="k-t"><h3>Pawilony handlowe i usługowe</h3><p>Duże witryny, elewacja w kolorach Twojej marki, gotowe do otwarcia sklepu lub salonu.</p></div></a>
       <a class="karta" href="#kalkulator" data-typ="biuro"><img src="img/r_czarny.webp" alt="Przeszklony kontener biurowy w kolorze antracytu" loading="lazy"><div class="k-t"><h3>Kontenery biurowe</h3><p>Moduły łączone w poziomie i piętrowane.</p></div></a>
       <a class="karta" href="#kalkulator" data-typ="gastro"><img src="img/gastro.webp" alt="Pawilon gastronomiczny z grafiką na elewacji i markizą" loading="lazy"><div class="k-t"><h3>Pawilony gastronomiczne</h3><p>Zgodne z wymogami Sanepidu.</p></div></a>
       <a class="karta" href="#kalkulator" data-typ="portiernia"><img src="img/r_portiernia.webp" alt="Portiernia kontenerowa z daszkiem przy wjeździe" loading="lazy"><div class="k-t"><h3>Portiernie i stróżówki</h3><p>Pełna widoczność i kontrola wjazdu.</p></div></a>
@@ -67,11 +68,11 @@
 
 <section class="sekcja ciemna" id="kalkulator">
   <div class="wrap">
-    <div class="naglowek"><h2>Kalkulator orientacyjnej ceny</h2><p class="lead-s">Wybierz typ, wymiary i wykończenie. Rysunek i kwota zmieniają się na bieżąco, a gotową konfigurację wysyłasz jednym kliknięciem jako zapytanie o darmową wycenę.</p></div>
+    <div class="naglowek"><h2>Kalkulator orientacyjnej ceny</h2><p class="lead-s">Ustaw typ, wymiary i wykończenie. Rysunek i kwota zmieniają się na bieżąco, a konfigurację wysyłasz jako zapytanie o darmową wycenę.</p></div>
 
     <!-- UWAGA: stawka bazowa 2150 zl/m2 netto pochodzi ze strony dickpawilony.pl ("w cenie od 2150 zl netto za m2").
          Wszystkie doplaty (typ, elewacja, przeszklenia, dach, dodatki, transport) sa PRZYKLADOWE - do uzupelnienia cennikiem firmy. -->
-    <p class="uwaga">Kwoty są przykładowe. Stawka bazowa „od 2150 zł netto za m²” pochodzi z obecnej strony firmy. Dopłaty za wykończenie, dodatki i transport są przykładowe i zostaną uzupełnione cennikiem Dick Pawilony.</p>
+    <p class="uwaga">Stawka bazowa „od 2150 zł netto za m²” pochodzi z obecnej strony firmy, dopłaty są przykładowe i zostaną zastąpione cennikiem Dick Pawilony.</p>
 
     <div class="kalk">
       <div class="kalk-l">
@@ -136,7 +137,7 @@
         </div>
       </div>
 
-      <div class="kalk-p">
+      <div class="kalk-p" id="podsumowanie">
         <svg id="rys" viewBox="0 0 440 260" role="img" aria-label="Podgląd bryły obiektu"></svg>
         <ul class="podsum" id="podsum"></ul>
         <div class="cena">
@@ -153,14 +154,14 @@
 
 <section class="sekcja" id="realizacje">
   <div class="wrap">
-    <div class="naglowek"><h2>Realizacje na mapie</h2><p class="lead-s">Punkty na mapie to realizacje opisane w materiałach firmy. Kliknij punkt ze zdjęciem, żeby zobaczyć obiekt.</p></div>
+    <div class="naglowek"><h2>Realizacje na mapie</h2><p class="lead-s">Obiekty opisane w materiałach firmy, w Polsce i w Niemczech. Kliknij punkt ze zdjęciem, żeby zobaczyć realizację.</p></div>
     <div class="real">
       <div class="mapa-box">
         <div id="mapa" class="mapa" aria-label="Mapa realizacji"></div>
         <div class="mapa-leg"><span><i class="lg-z"></i>ze zdjęciem</span><span><i class="lg-p"></i>realizacja z listy referencji</span><span><i class="lg-b"></i>siedziba i produkcja</span></div>
       </div>
       <article class="karta-r" id="kartaR" aria-live="polite">
-        <div class="kr-foto"><img id="krImg" src="img/bydg1.webp" alt=""><button type="button" class="kr-nast" id="krNast" aria-label="Następne zdjęcie">›</button></div>
+        <div class="kr-foto"><img id="krImg" src="img/bydg1.webp" alt="" width="1200" height="900"><div class="kr-nav" id="krNav"><button type="button" class="kr-b" id="krPop" aria-label="Poprzednie zdjęcie"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><span class="kr-i" id="krI">1 / 2</span><button type="button" class="kr-b" id="krNast" aria-label="Następne zdjęcie"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
         <div class="kr-t"><span class="kr-m" id="krM">Bydgoszcz</span><h3 id="krH">Biurowiec modułowy 185 m²</h3><p id="krP">Przestronne biuro modułowe z elewacją z białych kasetonów stalowych.</p></div>
         <div class="kr-lista" id="krLista"></div>
       </article>
@@ -168,9 +169,9 @@
 
     <h3 class="podt">Wybrane realizacje</h3>
     <div class="gal">
-      <figure class="g-w"><img src="img/r_drewno.webp" alt="Pawilon z elewacją z drewna i dużymi witrynami" loading="lazy"><figcaption>Pawilon z elewacją drewnianą</figcaption></figure>
+      <figure class="g-w"><img src="img/r_lamele.webp" alt="Kontener z drewnianymi lamelami i dużym przeszkleniem" loading="lazy"><figcaption>Pawilon z lamelami z drewna</figcaption></figure>
       <figure><img src="img/r_pietrowy.webp" alt="Piętrowy zestaw kontenerów biurowych z czerwonymi drzwiami" loading="lazy"><figcaption>Biuro piętrowe</figcaption></figure>
-      <figure><img src="img/r_lamele.webp" alt="Kontener z drewnianymi lamelami i dużym przeszkleniem" loading="lazy"><figcaption>Lamele z drewna</figcaption></figure>
+      <figure><img src="img/r_szklany.webp" alt="Przeszklony pawilon narożny z białą attyką" loading="lazy"><figcaption>Pawilon przeszklony</figcaption></figure>
       <figure><img src="img/r_komis.webp" alt="Biuro komisu samochodowego z elewacją z kompozytu" loading="lazy"><figcaption>Biuro komisu, kompozyt</figcaption></figure>
       <figure><img src="img/r_wiata.webp" alt="Pawilon z tarasem i stalową pergolą" loading="lazy"><figcaption>Pawilon z pergolą</figcaption></figure>
       <figure><img src="img/r_kwiaty.webp" alt="Pawilon kwiaciarnia z kwiatami przed wejściem" loading="lazy"><figcaption>Kwiaciarnia</figcaption></figure>
@@ -259,9 +260,9 @@
   </div>
 </footer>
 
-<div class="mob"><a class="btn btn-linia" href="tel:+48889387690">Zadzwoń</a><a class="btn btn-zloto" href="#kalkulator">Kalkulator ceny</a></div>
+<div class="mob"><div class="mob-a"><a class="btn btn-linia" href="tel:+48889387690">Zadzwoń</a><a class="btn btn-zloto" href="#kalkulator">Kalkulator ceny</a></div><div class="mob-k" aria-hidden="true"><span class="mob-c"><small>Orientacyjnie netto</small><b id="mobCena">-</b></span><a class="btn btn-zloto" href="#podsumowanie" tabindex="-1">Podsumowanie</a></div></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="app.js?v=1"></script>
+<script src="app.js?v=2"></script>
 </body>
 </html>
